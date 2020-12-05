@@ -21,20 +21,20 @@ public class ConnectCommand extends Command {
 	@Override
 	public int execute() {
 
-		ArrayList<String[]> tokens = this.interpeter.getTokens();
-		int indexBlockOfTokens = this.interpeter.getIndexBlockOfTokens();
-		int indexToken = this.interpeter.getIndexToken();
+		ArrayList<String[]> tokens = this.interpreter.getTokens();
+		int indexBlockOfTokens = this.interpreter.getIndexBlockOfTokens();
+		int indexToken = this.interpreter.getIndexToken();
 		String ip = tokens.get(indexBlockOfTokens)[indexToken + 1];
 		int port = 0;
 
 		ArrayList<String> expression = new ArrayList<String>();
-		String[] block = this.interpeter.getTokens().get(this.interpeter.getIndexBlockOfTokens());
+		String[] block = this.interpreter.getTokens().get(this.interpreter.getIndexBlockOfTokens());
 
 		for (int i = (indexToken + 2); i < block.length; i++) {
 			expression.add(block[i]);
 		}
 
-		port = (int) ShuntingYardAlgorithm.execute(expression, this.interpeter.getServerSymbolTable());
+		port = (int) ShuntingYardAlgorithm.execute(expression, this.interpreter.getServerSymbolTable());
 
 		while (isConnected == false) {
 			try {
@@ -49,7 +49,7 @@ public class ConnectCommand extends Command {
 			}
 		}
 
-		this.interpeter.setIndexToken(expression.size() + 1);
+		this.interpreter.setIndexToken(expression.size() + 1);
 
 		return 0;
 	}

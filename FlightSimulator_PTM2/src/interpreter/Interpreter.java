@@ -116,7 +116,7 @@ public class Interpreter {
 			for (this.indexToken = 0; this.indexToken < this.tokens.get(indexBlockOfTokens).length; this.indexToken++) {
 				Command command = this.commandFactory.getCommand(this.tokens.get(indexBlockOfTokens)[this.indexToken]);
 				if (command != null) {
-					command.setInterpeter(this);
+					command.setInterpreter(this);
 					new ExpressionCommand(command).calculate();
 				}
 			}
